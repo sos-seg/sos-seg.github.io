@@ -4,7 +4,6 @@ const nav = document.querySelector("[data-nav]");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
 const revealItems = document.querySelectorAll(".reveal");
 const copyButton = document.querySelector("[data-copy-bibtex]");
-const codeLink = document.querySelector("#code-link");
 
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 18);
@@ -70,13 +69,3 @@ copyButton?.addEventListener("click", async () => {
     window.getSelection()?.selectAllChildren(document.querySelector("#bibtex"));
   }
 });
-
-// Derive the repository link when the page is hosted at owner.github.io/repo/.
-if (codeLink && window.location.hostname.endsWith(".github.io")) {
-  const owner = window.location.hostname.split(".")[0];
-  const repository = window.location.pathname.split("/").filter(Boolean)[0];
-  if (owner && repository) {
-    const repositoryUrl = `https://github.com/${owner}/${repository}`;
-    codeLink.href = repositoryUrl;
-  }
-}
